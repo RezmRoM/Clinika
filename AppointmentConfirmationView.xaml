@@ -1,0 +1,280 @@
+<UserControl x:Class="Veterinary_Clinic.AppointmentConfirmationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Veterinary_Clinic"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Заголовок -->
+        <Border Grid.Row="0" 
+                Background="{StaticResource PrimaryBrush}" 
+                CornerRadius="10"
+                Margin="0,0,0,20">
+            <StackPanel Margin="20,15">
+                <TextBlock Text="Подтверждение записи" 
+                          FontSize="26" 
+                          FontWeight="Bold" 
+                          Foreground="White"/>
+                <TextBlock Text="Проверьте детали вашей записи перед подтверждением" 
+                          FontSize="16" 
+                          Foreground="White" 
+                          Opacity="0.9"
+                          Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Содержимое -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Сводка записи -->
+                <Border Style="{StaticResource CardStyle}" 
+                        Padding="25" 
+                        Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Заголовок карточки -->
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" 
+                                   Text="Детали записи" 
+                                   FontSize="20" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Margin="0,0,0,15"/>
+                        
+                        <!-- Служба -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" 
+                                   Text="Услуга:" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Opacity="0.7" 
+                                   VerticalAlignment="Top" 
+                                   Margin="0,0,0,12"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" 
+                                   x:Name="ServiceNameText" 
+                                   Text="Первичный осмотр" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   FontWeight="Medium" 
+                                   VerticalAlignment="Top" 
+                                   Margin="0,0,0,12"/>
+                        
+                        <!-- Дата и время -->
+                        <TextBlock Grid.Row="2" Grid.Column="0" 
+                                   Text="Дата и время:" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Opacity="0.7" 
+                                   VerticalAlignment="Top" 
+                                   Margin="0,0,0,12"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" 
+                                   x:Name="DateTimeText" 
+                                   Text="15 июня 2023, 10:30" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   FontWeight="Medium" 
+                                   VerticalAlignment="Top" 
+                                   Margin="0,0,0,12"/>
+                        
+                        <!-- Ветеринар -->
+                        <TextBlock Grid.Row="3" Grid.Column="0" 
+                                   Text="Специалист:" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Opacity="0.7" 
+                                   VerticalAlignment="Top" 
+                                   Margin="0,0,0,12"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" 
+                                   x:Name="VeterinarianText" 
+                                   Text="Иванов Иван Иванович" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   FontWeight="Medium" 
+                                   VerticalAlignment="Top" 
+                                   Margin="0,0,0,12"/>
+                        
+                        <!-- Питомец -->
+                        <TextBlock Grid.Row="4" Grid.Column="0" 
+                                   Text="Питомец:" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Opacity="0.7" 
+                                   VerticalAlignment="Top"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" 
+                                   x:Name="PetNameText" 
+                                   Text="Барсик" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   FontWeight="Medium" 
+                                   VerticalAlignment="Top"/>
+                    </Grid>
+                </Border>
+                
+                <!-- Детали причины обращения -->
+                <Border Style="{StaticResource CardStyle}" 
+                        Padding="25" 
+                        Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Причина обращения" 
+                                   FontSize="20" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Margin="0,0,0,15"/>
+                        
+                        <TextBlock Text="Жалобы:" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Opacity="0.7" 
+                                   Margin="0,0,0,5"/>
+                        <Border Background="{StaticResource SurfaceBrush}" 
+                                BorderBrush="{StaticResource LightBorderBrush}" 
+                                BorderThickness="1" 
+                                CornerRadius="6" 
+                                Padding="15" 
+                                Margin="0,0,0,15">
+                            <TextBlock x:Name="ComplaintsText" 
+                                       Text="Питомец стал мало есть, появилась вялость, повышенная температура." 
+                                       FontSize="14" 
+                                       Foreground="{StaticResource TextBrush}" 
+                                       TextWrapping="Wrap"/>
+                        </Border>
+                        
+                        <TextBlock Text="Дополнительная информация:" 
+                                   FontSize="15" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Opacity="0.7" 
+                                   Margin="0,0,0,5"
+                                   x:Name="AdditionalInfoLabel"
+                                   Visibility="Collapsed"/>
+                        <Border Background="{StaticResource SurfaceBrush}" 
+                                BorderBrush="{StaticResource LightBorderBrush}" 
+                                BorderThickness="1" 
+                                CornerRadius="6" 
+                                Padding="15" 
+                                x:Name="AdditionalInfoBorder"
+                                Visibility="Collapsed">
+                            <TextBlock x:Name="AdditionalInfoText" 
+                                       Text="" 
+                                       FontSize="14" 
+                                       Foreground="{StaticResource TextBrush}" 
+                                       TextWrapping="Wrap"/>
+                        </Border>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Стоимость услуги -->
+                <Border Style="{StaticResource CardStyle}" 
+                        Padding="25" 
+                        Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0" 
+                                   Text="Стоимость услуги" 
+                                   FontSize="20" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Margin="0,0,0,15"/>
+                        
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0" 
+                                       x:Name="ServiceDescriptionText" 
+                                       Text="Первичный осмотр ветеринаром" 
+                                       FontSize="16" 
+                                       Foreground="{StaticResource TextBrush}" 
+                                       VerticalAlignment="Center"/>
+                            
+                            <TextBlock Grid.Column="1" 
+                                       x:Name="ServicePriceText" 
+                                       Text="1500 ₽" 
+                                       FontSize="18" 
+                                       FontWeight="Bold" 
+                                       Foreground="{StaticResource AccentBrush}" 
+                                       VerticalAlignment="Center"
+                                       Margin="15,0,0,0"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+                
+                <!-- Правила клиники -->
+                <Border Style="{StaticResource CardStyle}" 
+                        Padding="25">
+                    <StackPanel>
+                        <TextBlock Text="Правила клиники" 
+                                   FontSize="20" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="{StaticResource TextBrush}" 
+                                   Margin="0,0,0,15"/>
+                        
+                        <TextBlock TextWrapping="Wrap" 
+                                   FontSize="14" 
+                                   Foreground="{StaticResource TextBrush}">
+                            <Run Text="• Пожалуйста, приходите за 10-15 минут до назначенного времени для регистрации."/>
+                            <LineBreak/>
+                            <Run Text="• Для отмены или переноса записи, пожалуйста, уведомите нас не менее чем за 24 часа."/>
+                            <LineBreak/>
+                            <Run Text="• Убедитесь, что ваш питомец находится в переноске или на поводке для безопасности."/>
+                            <LineBreak/>
+                            <Run Text="• Оплата услуг производится после оказания услуги."/>
+                        </TextBlock>
+                        
+                        <CheckBox x:Name="ConfirmRulesCheckBox" 
+                                  Content="Я согласен с правилами клиники" 
+                                  Margin="0,15,0,0" 
+                                  FontSize="14"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Кнопки навигации -->
+        <Grid Grid.Row="2" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" 
+                    Content="Назад" 
+                    Style="{StaticResource ModernButton}" 
+                    Background="#888888" 
+                    Width="120"
+                    Click="BackButton_Click"/>
+            
+            <Button Grid.Column="2" 
+                    Content="Подтвердить запись" 
+                    Style="{StaticResource ModernButton}" 
+                    Width="200"
+                    IsEnabled="{Binding ElementName=ConfirmRulesCheckBox, Path=IsChecked}"
+                    Click="ConfirmButton_Click"/>
+        </Grid>
+    </Grid>
+</UserControl> 

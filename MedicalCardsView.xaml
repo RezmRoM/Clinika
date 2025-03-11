@@ -1,0 +1,421 @@
+<UserControl x:Class="Veterinary_Clinic.MedicalCardsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Veterinary_Clinic"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900">
+    
+    <UserControl.Resources>
+        <!-- Стиль для карточки питомца -->
+        <Style x:Key="PetCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,0,15,15"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Height" Value="270"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="270" Color="#20000000" Opacity="0.2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Стиль для карточки медицинской записи -->
+        <Style x:Key="MedicalRecordCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="1" Direction="270" Color="#20000000" Opacity="0.2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Стиль для круглой иконки животного -->
+        <Style x:Key="PetIconStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="CornerRadius" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,20,0,15"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Заголовок -->
+        <Border Grid.Row="0" 
+                Background="{StaticResource PrimaryBrush}" 
+                CornerRadius="10"
+                Margin="0,0,0,20">
+            <StackPanel Margin="20,15">
+                <TextBlock Text="Медицинские карты" 
+                          FontSize="26" 
+                          FontWeight="Bold" 
+                          Foreground="White"/>
+                <TextBlock Text="Здесь собрана вся информация о здоровье ваших питомцев" 
+                          FontSize="16" 
+                          Foreground="White" 
+                          Opacity="0.9"
+                          Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Основное содержимое -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Список питомцев -->
+            <ScrollViewer Grid.Column="0" 
+                          VerticalScrollBarVisibility="Auto" 
+                          Width="250" 
+                          Margin="0,0,20,0">
+                <StackPanel>
+                    <TextBlock Text="Ваши питомцы" 
+                               FontSize="18" 
+                               FontWeight="SemiBold" 
+                               Foreground="{StaticResource TextBrush}" 
+                               Margin="0,0,0,15"/>
+                    
+                    <!-- Динамический список питомцев -->
+                    <ItemsControl x:Name="PetsItemsControl">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource PetCardStyle}" 
+                                        Width="220" 
+                                        Height="Auto" 
+                                        Margin="0,0,0,15" 
+                                        Tag="{Binding PetId}" 
+                                        MouseLeftButtonDown="PetCard_MouseLeftButtonDown">
+                                    <StackPanel Margin="15">
+                                        <!-- Иконка типа животного -->
+                                        <Border Style="{StaticResource PetIconStyle}">
+                                            <TextBlock Text="{Binding TypeName}" 
+                                                       FontSize="18" 
+                                                       Foreground="White" 
+                                                       HorizontalAlignment="Center" 
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                        
+                                        <!-- Информация о питомце -->
+                                        <TextBlock Text="{Binding Name}" 
+                                                   FontSize="18" 
+                                                   FontWeight="SemiBold" 
+                                                   Foreground="{StaticResource TextBrush}" 
+                                                   TextAlignment="Center" 
+                                                   Margin="0,0,0,10"/>
+                                        
+                                        <Grid Margin="0,0,0,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <TextBlock Grid.Column="0" 
+                                                       Text="Тип:" 
+                                                       FontSize="14" 
+                                                       Foreground="{StaticResource TextBrush}" 
+                                                       Opacity="0.7"/>
+                                            
+                                            <TextBlock Grid.Column="1" 
+                                                       Text="{Binding TypeName}" 
+                                                       FontSize="14" 
+                                                       Foreground="{StaticResource TextBrush}"/>
+                                        </Grid>
+                                        
+                                        <Grid x:Name="BreedGrid" Margin="0,0,0,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <TextBlock Grid.Column="0" 
+                                                       Text="Порода:" 
+                                                       FontSize="14" 
+                                                       Foreground="{StaticResource TextBrush}" 
+                                                       Opacity="0.7"/>
+                                            
+                                            <TextBlock Grid.Column="1" 
+                                                       Text="{Binding Breed}" 
+                                                       FontSize="14" 
+                                                       Foreground="{StaticResource TextBrush}"/>
+                                        </Grid>
+                                        
+                                        <Grid Margin="0,0,0,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <TextBlock Grid.Column="0" 
+                                                       Text="Пол:" 
+                                                       FontSize="14" 
+                                                       Foreground="{StaticResource TextBrush}" 
+                                                       Opacity="0.7"/>
+                                            
+                                            <TextBlock Grid.Column="1" 
+                                                       Text="{Binding Gender}" 
+                                                       FontSize="14" 
+                                                       Foreground="{StaticResource TextBrush}"/>
+                                        </Grid>
+                                        
+                                        <Grid x:Name="AgeGrid" Margin="0,0,0,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <TextBlock Grid.Column="0" 
+                                                       Text="Возраст:" 
+                                                       FontSize="14" 
+                                                       Foreground="{StaticResource TextBrush}" 
+                                                       Opacity="0.7"/>
+                                            
+                                            <TextBlock Grid.Column="1" 
+                                                       Text="{Binding FormattedAge}" 
+                                                       FontSize="14" 
+                                                       Foreground="{StaticResource TextBrush}"/>
+                                        </Grid>
+                                        
+                                        <!-- Количество записей -->
+                                        <Border Background="{StaticResource SurfaceBrush}" 
+                                                CornerRadius="8" 
+                                                Padding="12,8" 
+                                                Margin="0,10,0,0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                
+                                                <TextBlock Grid.Column="0" 
+                                                           Text="Записей в карте:" 
+                                                           FontSize="13" 
+                                                           Foreground="{StaticResource TextBrush}" 
+                                                           VerticalAlignment="Center"/>
+                                                
+                                                <TextBlock Grid.Column="1" 
+                                                           Text="{Binding MedicalRecordsCount}" 
+                                                           FontSize="13" 
+                                                           FontWeight="SemiBold" 
+                                                           Foreground="{StaticResource AccentBrush}"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    
+                    <!-- Сообщение, если нет питомцев -->
+                    <TextBlock x:Name="NoPetsText" 
+                               Text="У вас пока нет добавленных питомцев. Вы можете добавить питомца при создании новой записи на приём." 
+                               FontSize="14" 
+                               Foreground="{StaticResource TextBrush}" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center" 
+                               Visibility="Collapsed" 
+                               Margin="0,50,0,0"/>
+                </StackPanel>
+            </ScrollViewer>
+            
+            <!-- Содержимое медицинской карты -->
+            <Grid Grid.Column="1">
+                <!-- Состояние загрузки -->
+                <TextBlock x:Name="LoadingText" 
+                           Text="Выберите питомца, чтобы просмотреть его медицинскую карту" 
+                           FontSize="16" 
+                           Foreground="{StaticResource TextBrush}" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" 
+                           TextAlignment="Center"/>
+                
+                <!-- Состояние отображения карты -->
+                <Grid x:Name="MedicalCardContent" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Информация о выбранном питомце -->
+                    <Border Grid.Row="0" 
+                            Style="{StaticResource CardStyle}" 
+                            Padding="20" 
+                            Margin="0,0,0,20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Аватар питомца -->
+                            <Border Grid.Column="0" 
+                                    Style="{StaticResource PetIconStyle}" 
+                                    Width="60" 
+                                    Height="60" 
+                                    Margin="0,0,20,0">
+                                <TextBlock x:Name="SelectedPetInitial" 
+                                           Text="П" 
+                                           FontSize="24" 
+                                           FontWeight="Bold" 
+                                           Foreground="White" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <!-- Детали питомца -->
+                            <StackPanel Grid.Column="1">
+                                <TextBlock x:Name="SelectedPetName" 
+                                           Text="Имя питомца" 
+                                           FontSize="20" 
+                                           FontWeight="SemiBold" 
+                                           Foreground="{StaticResource TextBrush}"/>
+                                
+                                <TextBlock x:Name="SelectedPetDetails" 
+                                           Text="Тип • Порода • Возраст" 
+                                           FontSize="14" 
+                                           Foreground="{StaticResource TextBrush}" 
+                                           Opacity="0.7" 
+                                           Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Список записей в медицинской карте -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock Text="История приёмов" 
+                                       FontSize="18" 
+                                       FontWeight="SemiBold" 
+                                       Foreground="{StaticResource TextBrush}" 
+                                       Margin="0,0,0,15"/>
+                            
+                            <!-- Записи в карте -->
+                            <ItemsControl x:Name="MedicalRecordsItemsControl">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource MedicalRecordCardStyle}" Padding="20" Margin="0,0,0,15">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                
+                                                <!-- Заголовок и дата -->
+                                                <Grid Grid.Row="0" Margin="0,0,0,15">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    
+                                                    <TextBlock Grid.Column="0" 
+                                                               Text="{Binding ServiceName}" 
+                                                               FontSize="18" 
+                                                               FontWeight="SemiBold" 
+                                                               Foreground="{StaticResource TextBrush}"/>
+                                                    
+                                                    <TextBlock Grid.Column="1" 
+                                                               Text="{Binding VisitDate, StringFormat=d MMMM yyyy}" 
+                                                               FontSize="14" 
+                                                               Foreground="{StaticResource TextBrush}" 
+                                                               Opacity="0.7" 
+                                                               VerticalAlignment="Center"/>
+                                                </Grid>
+                                                
+                                                <!-- Специалист -->
+                                                <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                                                    <TextBlock Text="Специалист" 
+                                                               FontSize="14" 
+                                                               Foreground="{StaticResource TextBrush}" 
+                                                               Opacity="0.7"/>
+                                                    
+                                                    <TextBlock Text="{Binding VeterinarianName}" 
+                                                               FontSize="15" 
+                                                               Foreground="{StaticResource TextBrush}" 
+                                                               Margin="0,3,0,0"/>
+                                                </StackPanel>
+                                                
+                                                <!-- Жалобы -->
+                                                <StackPanel Grid.Row="2" Margin="0,0,0,10">
+                                                    <TextBlock Text="Жалобы" 
+                                                               FontSize="14" 
+                                                               Foreground="{StaticResource TextBrush}" 
+                                                               Opacity="0.7"/>
+                                                    
+                                                    <TextBlock Text="{Binding Complaints}" 
+                                                               FontSize="15" 
+                                                               Foreground="{StaticResource TextBrush}" 
+                                                               TextWrapping="Wrap" 
+                                                               Margin="0,3,0,0"/>
+                                                </StackPanel>
+                                                
+                                                <!-- Диагноз и рекомендации -->
+                                                <StackPanel Grid.Row="3">
+                                                    <StackPanel x:Name="DiagnosisPanel" Margin="0,0,0,10">
+                                                        <TextBlock Text="Диагноз" 
+                                                                   FontSize="14" 
+                                                                   Foreground="{StaticResource TextBrush}" 
+                                                                   Opacity="0.7"/>
+                                                        
+                                                        <TextBlock Text="{Binding Diagnosis}" 
+                                                                   FontSize="15" 
+                                                                   Foreground="{StaticResource TextBrush}" 
+                                                                   TextWrapping="Wrap" 
+                                                                   Margin="0,3,0,0"/>
+                                                    </StackPanel>
+                                                    
+                                                    <StackPanel x:Name="RecommendationsPanel">
+                                                        <TextBlock Text="Рекомендации" 
+                                                                   FontSize="14" 
+                                                                   Foreground="{StaticResource TextBrush}" 
+                                                                   Opacity="0.7"/>
+                                                        
+                                                        <TextBlock Text="{Binding Recommendations}" 
+                                                                   FontSize="15" 
+                                                                   Foreground="{StaticResource TextBrush}" 
+                                                                   TextWrapping="Wrap" 
+                                                                   Margin="0,3,0,0"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            
+                            <!-- Сообщение, если нет записей -->
+                            <TextBlock x:Name="NoRecordsText" 
+                                       Text="У этого питомца пока нет записей в медицинской карте. Записи появляются после приёма у ветеринара." 
+                                       FontSize="14" 
+                                       Foreground="{StaticResource TextBrush}" 
+                                       TextWrapping="Wrap" 
+                                       TextAlignment="Center" 
+                                       Visibility="Collapsed" 
+                                       Margin="0,50,0,0"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl> 

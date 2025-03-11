@@ -1,0 +1,421 @@
+<UserControl x:Class="Veterinary_Clinic.ServicesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Veterinary_Clinic"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900">
+    
+    <UserControl.Resources>
+        <!-- Стиль для карточки услуги -->
+        <Style x:Key="ServiceCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15" ShadowDepth="2" Direction="270" Color="#20000000" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="10,10,10,15"/>
+            <Setter Property="Width" Value="260"/>
+            <Setter Property="Height" Value="350"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Border.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" 
+                                             To="25" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" 
+                                             To="0.5" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" 
+                                             To="1.03" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" 
+                                             To="1.03" Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Border.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" 
+                                             To="15" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.Opacity)" 
+                                             To="0.3" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" 
+                                             To="1.0" Duration="0:0:0.2"/>
+                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" 
+                                             To="1.0" Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- Стиль для кнопки "Записаться" -->
+        <Style x:Key="BookServiceButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+        
+        <!-- Стиль для текста заголовка -->
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Margin" Value="10,0,0,5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        
+        <!-- Стиль для подзаголовка -->
+        <Style x:Key="SubHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <Setter Property="Margin" Value="10,0,0,25"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        
+        <!-- Стиль для TextBlock внутри SearchBox -->
+        <Style x:Key="SearchBoxTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#888"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+        </Style>
+        
+        <!-- Стиль для TextBox внутри SearchBox -->
+        <Style x:Key="SearchBoxInputStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5,0,0,0"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+        </Style>
+        
+        <!-- Стиль для плашки фильтра услуг -->
+        <Style x:Key="ServiceFilterChipStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- Стиль для текста плашки фильтра -->
+        <Style x:Key="ServiceFilterTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Заголовок -->
+        <Border Grid.Row="0" 
+                Background="{StaticResource PrimaryBrush}" 
+                CornerRadius="10"
+                Margin="0,0,0,20">
+            <StackPanel Margin="20,15">
+                <TextBlock Text="Услуги ветеринарной клиники" 
+                          FontSize="26" 
+                          FontWeight="Bold" 
+                          Foreground="White"/>
+                <TextBlock Text="Выберите услугу для записи на прием" 
+                          FontSize="16" 
+                          Foreground="White" 
+                          Opacity="0.9"
+                          Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Поиск и фильтры -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Поисковая строка -->
+            <Border Grid.Column="0" 
+                    Background="{StaticResource SurfaceBrush}" 
+                    CornerRadius="20" 
+                    Height="44" 
+                    Margin="0,0,10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Иконка поиска -->
+                    <Path Grid.Column="0" 
+                          Data="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" 
+                          Fill="#888" 
+                          Stretch="Uniform" 
+                          Width="18" 
+                          Height="18" 
+                          Margin="15,0,5,0"/>
+                    
+                    <!-- Текстовое поле поиска -->
+                    <TextBox Grid.Column="1" 
+                             x:Name="SearchBox" 
+                             Style="{StaticResource SearchBoxInputStyle}" 
+                             TextChanged="SearchBox_TextChanged" 
+                             Width="Auto"/>
+                    
+                    <!-- Плейсхолдер (виден, когда поле пустое) -->
+                    <TextBlock Text="Введите запрос для поиска" 
+                               FontSize="14" 
+                               Foreground="{StaticResource LightTextBrush}" 
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               x:Name="SearchPlaceholder"/>
+                    
+                    <!-- Кнопка очистки (появляется при вводе) -->
+                    <Button Grid.Column="2" 
+                            x:Name="ClearSearchButton"
+                            Style="{StaticResource ModernButton}" 
+                            Width="30" 
+                            Height="30" 
+                            Content="✕" 
+                            Foreground="{StaticResource TextBrush}" 
+                            Background="Transparent" 
+                            BorderThickness="0" 
+                            Padding="0" 
+                            Margin="5,0,0,0" 
+                            Click="ClearSearchButton_Click"
+                            Visibility="Collapsed"/>
+                </Grid>
+            </Border>
+            
+            <!-- Выпадающий список для сортировки -->
+            <ComboBox Grid.Column="1" 
+                      x:Name="SortComboBox"
+                      Width="180" 
+                      Height="44" 
+                      VerticalContentAlignment="Center"
+                      SelectionChanged="SortComboBox_SelectionChanged">
+                <ComboBoxItem Content="По популярности" IsSelected="True"/>
+                <ComboBoxItem Content="По цене (возр.)"/>
+                <ComboBoxItem Content="По цене (убыв.)"/>
+                <ComboBoxItem Content="По алфавиту"/>
+            </ComboBox>
+        </Grid>
+        
+        <!-- Фильтры по категориям -->
+        <ScrollViewer Grid.Row="2" 
+                    HorizontalScrollBarVisibility="Auto" 
+                    VerticalScrollBarVisibility="Disabled" 
+                    Margin="0,0,0,20">
+            <StackPanel Orientation="Horizontal">
+                <Border Style="{StaticResource ServiceFilterChipStyle}" 
+                        Tag="all" 
+                        x:Name="AllFilter" 
+                        MouseLeftButtonDown="FilterChip_MouseLeftButtonDown">
+                    <TextBlock Text="Все услуги" 
+                             Style="{StaticResource ServiceFilterTextStyle}"/>
+                </Border>
+                
+                <Border Style="{StaticResource ServiceFilterChipStyle}" 
+                        Tag="examination" 
+                        x:Name="ExaminationFilter" 
+                        MouseLeftButtonDown="FilterChip_MouseLeftButtonDown">
+                    <TextBlock Text="Осмотры" 
+                             Style="{StaticResource ServiceFilterTextStyle}"/>
+                </Border>
+                
+                <Border Style="{StaticResource ServiceFilterChipStyle}" 
+                        Tag="prevention" 
+                        x:Name="PreventionFilter" 
+                        MouseLeftButtonDown="FilterChip_MouseLeftButtonDown">
+                    <TextBlock Text="Профилактика" 
+                             Style="{StaticResource ServiceFilterTextStyle}"/>
+                </Border>
+                
+                <Border Style="{StaticResource ServiceFilterChipStyle}" 
+                        Tag="surgery" 
+                        x:Name="SurgeryFilter" 
+                        MouseLeftButtonDown="FilterChip_MouseLeftButtonDown">
+                    <TextBlock Text="Хирургия" 
+                             Style="{StaticResource ServiceFilterTextStyle}"/>
+                </Border>
+                
+                <Border Style="{StaticResource ServiceFilterChipStyle}" 
+                        Tag="diagnostics" 
+                        x:Name="DiagnosticsFilter" 
+                        MouseLeftButtonDown="FilterChip_MouseLeftButtonDown">
+                    <TextBlock Text="Диагностика" 
+                             Style="{StaticResource ServiceFilterTextStyle}"/>
+                </Border>
+                
+                <Border Style="{StaticResource ServiceFilterChipStyle}" 
+                        Tag="dental" 
+                        x:Name="DentalFilter" 
+                        MouseLeftButtonDown="FilterChip_MouseLeftButtonDown">
+                    <TextBlock Text="Стоматология" 
+                             Style="{StaticResource ServiceFilterTextStyle}"/>
+                </Border>
+                
+                <Border Style="{StaticResource ServiceFilterChipStyle}" 
+                        Tag="aesthetics" 
+                        x:Name="AestheticsFilter" 
+                        MouseLeftButtonDown="FilterChip_MouseLeftButtonDown">
+                    <TextBlock Text="Эстетические" 
+                             Style="{StaticResource ServiceFilterTextStyle}"/>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Список услуг -->
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="ServicesItemsControl">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource ServiceCardStyle}"
+                                MouseLeftButtonDown="ServiceCard_MouseLeftButtonDown"
+                                Tag="{Binding ServiceId}"
+                                RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="170"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <!-- Изображение услуги -->
+                                <Border Grid.Row="0" 
+                                        CornerRadius="12,12,0,0" 
+                                        ClipToBounds="True">
+                                    <Grid>
+                                        <Image Source="{Binding ImageUrl}" 
+                                               Stretch="UniformToFill" 
+                                               Height="170" 
+                                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                                        
+                                        <!-- Градиент затемнения для лучшей читаемости ценника -->
+                                        <Border>
+                                            <Border.Background>
+                                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                                    <GradientStop Color="#00000000" Offset="0.6"/>
+                                                    <GradientStop Color="#99000000" Offset="1.0"/>
+                                                </LinearGradientBrush>
+                                            </Border.Background>
+                                        </Border>
+                                        
+                                        <!-- Ценник услуги -->
+                                        <Border Background="{StaticResource AccentBrush}" 
+                                                CornerRadius="20" 
+                                                Width="Auto" 
+                                                Height="30" 
+                                                Padding="15,0" 
+                                                HorizontalAlignment="Left" 
+                                                VerticalAlignment="Bottom" 
+                                                Margin="10,0,0,10">
+                                            <TextBlock Text="{Binding Price, StringFormat={}{0:N0} ₽}" 
+                                                       FontSize="14" 
+                                                       FontWeight="SemiBold" 
+                                                       Foreground="White" 
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                        
+                                        <!-- Продолжительность услуги -->
+                                        <StackPanel Orientation="Horizontal" 
+                                                  HorizontalAlignment="Right" 
+                                                  VerticalAlignment="Bottom" 
+                                                  Margin="0,0,10,10">
+                                            <Path Data="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" 
+                                                  Fill="White" 
+                                                  Stretch="Uniform" 
+                                                  Width="16" 
+                                                  Height="16" 
+                                                  Margin="0,0,5,0"/>
+                                            <TextBlock Text="{Binding Duration, StringFormat={}{0} мин}" 
+                                                       FontSize="14" 
+                                                       Foreground="White" 
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                                
+                                <!-- Информация об услуге -->
+                                <Grid Grid.Row="1" Margin="15,10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <!-- Название услуги -->
+                                    <TextBlock Grid.Row="0" 
+                                               Text="{Binding Name}" 
+                                               FontSize="17" 
+                                               FontWeight="SemiBold" 
+                                               Foreground="{StaticResource TextBrush}" 
+                                               TextWrapping="Wrap"
+                                               Margin="0,0,0,8"/>
+                                    
+                                    <!-- Описание услуги -->
+                                    <TextBlock Grid.Row="1" 
+                                               Text="{Binding Description}" 
+                                               FontSize="13" 
+                                               Foreground="{StaticResource TextBrush}" 
+                                               Opacity="0.7" 
+                                               TextWrapping="Wrap" 
+                                               TextTrimming="CharacterEllipsis" 
+                                               MaxHeight="50"/>
+                                    
+                                    <!-- Кнопка записи -->
+                                    <Button Grid.Row="2" 
+                                            Content="Записаться" 
+                                            Style="{StaticResource BookServiceButtonStyle}" 
+                                            Tag="{Binding ServiceId}" 
+                                            Click="BookServiceButton_Click"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl> 

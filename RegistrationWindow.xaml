@@ -1,0 +1,301 @@
+﻿<Window x:Class="Veterinary_Clinic.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Veterinary_Clinic"
+        mc:Ignorable="d"
+        Title="Регистрация - Ветеринарная Клиника" 
+        Height="750" 
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="CanResizeWithGrip">
+
+    <Window.Resources>
+        <!-- Цветовая схема -->
+        <Color x:Key="PrimaryColor">#4ECDC4</Color>
+        <Color x:Key="SecondaryColor">#A8E6CF</Color>
+        <Color x:Key="BackgroundColor">#F7F9FB</Color>
+        <Color x:Key="SurfaceColor">#E8F4F2</Color>
+        <Color x:Key="TextColor">#2D3E50</Color>
+        <Color x:Key="AccentColor">#FF8C42</Color>
+
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+        <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+        <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}"/>
+        <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+
+        <!-- Стиль для кнопок -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource SecondaryBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль для TextBox -->
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль для PasswordBox -->
+        <Style x:Key="ModernPasswordBox" TargetType="PasswordBox">
+            <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Border Background="{StaticResource BackgroundBrush}" 
+            CornerRadius="20" 
+            BorderThickness="1" 
+            BorderBrush="{StaticResource PrimaryBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Верхняя панель с кнопками управления окном -->
+            <Grid Grid.Row="0" Background="Transparent" MouseLeftButtonDown="DragWindow">
+                <TextBlock Text="Ветеринарная Клиника - Регистрация"
+                           Foreground="{StaticResource TextBrush}"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Center"/>
+                
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right" 
+                            Margin="0,0,5,0">
+                    <Button x:Name="MinimizeButton" 
+                            Content="—"
+                            Click="MinimizeWindow"
+                            Style="{StaticResource ModernButton}"
+                            Width="30" 
+                            Height="25"/>
+                    <Button x:Name="MaximizeButton" 
+                            Content="□"
+                            Click="MaximizeWindow"
+                            Style="{StaticResource ModernButton}"
+                            Width="30" 
+                            Height="25"
+                            Margin="5,0"/>
+                    <Button x:Name="CloseButton" 
+                            Content="✕"
+                            Click="CloseWindow"
+                            Style="{StaticResource ModernButton}"
+                            Width="30" 
+                            Height="25"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="450"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Левая часть с изображением -->
+                <Border Grid.Column="0">
+    <Grid>
+                        <Image Source="https://img.freepik.com/free-photo/female-vet-with-stethoscope-checking-up-dog-clinic_23-2148786114.jpg" 
+                               Stretch="UniformToFill">
+                            <Image.Effect>
+                                <BlurEffect Radius="2"/>
+                            </Image.Effect>
+                        </Image>
+                        
+                        <!-- Тематический оверлей -->
+                        <Border Background="#80000000" Opacity="0.6">
+                            <StackPanel VerticalAlignment="Center" 
+                                        HorizontalAlignment="Center" 
+                                        Margin="30">
+                                <TextBlock Text="Забота о ваших питомцах" 
+                                           FontSize="36" 
+                                           FontWeight="Bold" 
+                                           Foreground="White" 
+                                           TextAlignment="Center"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="Регистрация позволит вам получить доступ к нашим услугам и записаться на прием к ветеринару" 
+                                           FontSize="18" 
+                                           Foreground="White" 
+                                           TextAlignment="Center" 
+                                           TextWrapping="Wrap"
+                                           Margin="0,20,0,0"/>
+                                
+                                <!-- Иконки услуг -->
+                                <UniformGrid Columns="3" Margin="0,40,0,0">
+                                    <StackPanel Margin="10">
+                                        <Image Source="https://cdn-icons-png.flaticon.com/512/2658/2658035.png" 
+                                               Width="50" Height="50"/>
+                                        <TextBlock Text="Осмотры" 
+                                                   Foreground="White" 
+                                                   HorizontalAlignment="Center" 
+                                                   Margin="0,10,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="10">
+                                        <Image Source="https://cdn-icons-png.flaticon.com/512/3588/3588526.png" 
+                                               Width="50" Height="50"/>
+                                        <TextBlock Text="Вакцинация" 
+                                                   Foreground="White" 
+                                                   HorizontalAlignment="Center" 
+                                                   Margin="0,10,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="10">
+                                        <Image Source="https://cdn-icons-png.flaticon.com/512/2966/2966486.png" 
+                                               Width="50" Height="50"/>
+                                        <TextBlock Text="Лечение" 
+                                                   Foreground="White" 
+                                                   HorizontalAlignment="Center" 
+                                                   Margin="0,10,0,0"/>
+                                    </StackPanel>
+                                </UniformGrid>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Правая часть с формой регистрации -->
+                <ScrollViewer Grid.Column="1" 
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="40"
+                                VerticalAlignment="Center">
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/2138/2138508.png" 
+                               Width="80" 
+                               Height="80" 
+                               Margin="0,0,0,20"/>
+                        
+                        <TextBlock Text="Регистрация"
+                                   FontSize="32"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource TextBrush}"
+                                   Margin="0,0,0,20"/>
+
+                        <TextBlock Text="ФИО"
+                                   Foreground="{StaticResource TextBrush}"
+                                   Margin="0,0,0,5"/>
+                        <TextBox x:Name="FullNameTextBox"
+                                 Height="40"
+                                 FontSize="16"
+                                 Style="{StaticResource ModernTextBox}"/>
+
+                        <TextBlock Text="Телефон"
+                                   Foreground="{StaticResource TextBrush}"
+                                   Margin="0,15,0,5"/>
+                        <TextBox x:Name="PhoneTextBox"
+                                 Height="40"
+                                 FontSize="16"
+                                 Style="{StaticResource ModernTextBox}"/>
+
+                        <TextBlock Text="Пароль"
+                                   Foreground="{StaticResource TextBrush}"
+                                   Margin="0,15,0,5"/>
+                        <PasswordBox x:Name="PasswordBox"
+                                     Height="40"
+                                     FontSize="16"
+                                     Style="{StaticResource ModernPasswordBox}"/>
+
+                        <TextBlock Text="Подтверждение пароля"
+                                   Foreground="{StaticResource TextBrush}"
+                                   Margin="0,15,0,5"/>
+                        <PasswordBox x:Name="ConfirmPasswordBox"
+                                     Height="40"
+                                     FontSize="16"
+                                     Style="{StaticResource ModernPasswordBox}"/>
+
+                        <TextBlock Text="URL изображения профиля (опционально)"
+                                   Foreground="{StaticResource TextBrush}"
+                                   Margin="0,15,0,5"/>
+                        <TextBox x:Name="ImageUrlTextBox"
+                                 Height="40"
+                                 FontSize="16"
+                                 Style="{StaticResource ModernTextBox}"/>
+
+                        <Button Content="Зарегистрироваться"
+                                Style="{StaticResource ModernButton}"
+                                Margin="0,30,0,0"
+                                Height="45"
+                                FontSize="16"
+                                Click="RegisterButton_Click"/>
+
+                        <TextBlock Margin="0,20,0,0"
+                                   HorizontalAlignment="Center">
+                            <Hyperlink x:Name="LoginLink" 
+                                       Foreground="{StaticResource PrimaryBrush}"
+                                       TextDecorations="None"
+                                       Click="LoginLink_Click">
+                                <TextBlock Text="Уже есть аккаунт? Войти"
+                                           FontSize="14"/>
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+    </Grid>
+    </Border>
+</Window>

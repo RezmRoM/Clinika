@@ -1,0 +1,343 @@
+﻿<UserControl x:Class="Veterinary_Clinic.ProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Veterinary_Clinic"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="900">
+
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Заголовок -->
+                <TextBlock Text="Профиль пользователя" 
+                           Style="{StaticResource SectionHeaderStyle}"
+                           Margin="0,0,0,30"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Левая часть - фото профиля и кнопки -->
+                    <StackPanel Grid.Column="0" Margin="0,0,40,0">
+                        <!-- Фото профиля -->
+                        <Border Width="200" 
+                                Height="200" 
+                                CornerRadius="100" 
+                                Background="{StaticResource SurfaceBrush}"
+                                BorderBrush="{StaticResource PrimaryBrush}"
+                                BorderThickness="3"
+                                Margin="0,0,0,20">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="2" BlurRadius="10" Opacity="0.3"/>
+                            </Border.Effect>
+                            <Grid>
+                                <Image x:Name="ProfilePicture" 
+                                       Source="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" 
+                                       Stretch="UniformToFill"/>
+
+                                <!-- Наложение для эффекта при наведении -->
+                                <Border x:Name="ImageOverlay" 
+                                        Background="#33000000" 
+                                        Opacity="0" 
+                                        Cursor="Hand"
+                                        MouseEnter="ProfilePicture_MouseEnter"
+                                        MouseLeave="ProfilePicture_MouseLeave"
+                                        MouseLeftButtonDown="ChangeImage_Click">
+                                    <TextBlock Text="Изменить фото" 
+                                               Foreground="White" 
+                                               HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center"
+                                               FontWeight="SemiBold"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+
+                        <!-- Кнопки управления -->
+                        <Button x:Name="EditProfileButton" 
+                                Content="Редактировать профиль"
+                                Style="{StaticResource ModernButton}"
+                                Click="EditProfile_Click"
+                                Margin="0,10"
+                                HorizontalAlignment="Center"
+                                Width="180"
+                                Height="40"/>
+
+                        <Button x:Name="ChangePasswordButton" 
+                                Content="Изменить пароль"
+                                Style="{StaticResource OutlineButton}"
+                                Click="ChangePassword_Click"
+                                Margin="0,10"
+                                HorizontalAlignment="Center"
+                                Width="180"
+                                Height="40"/>
+                    </StackPanel>
+
+                    <!-- Правая часть - информация о пользователе -->
+                    <Border Grid.Column="1" 
+                            Background="{StaticResource SurfaceBrush}" 
+                            CornerRadius="15" 
+                            Padding="20"
+                            BorderBrush="{StaticResource LightGrayBrush}"
+                            BorderThickness="1">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="2" BlurRadius="10" Opacity="0.1"/>
+                        </Border.Effect>
+
+                        <StackPanel>
+                            <!-- Режим просмотра -->
+                            <Grid x:Name="ViewModePanel" Visibility="Visible">
+                                <StackPanel>
+                                    <TextBlock Text="Личная информация" 
+                                               FontSize="18" 
+                                               FontWeight="SemiBold"
+                                               Margin="0,0,0,20"
+                                               Foreground="{StaticResource TextBrush}"/>
+
+                                    <!-- ФИО -->
+                                    <StackPanel Margin="0,5">
+                                        <TextBlock Text="ФИО:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <TextBlock x:Name="NameValueText" 
+                                                   Text="Иванов Иван Иванович" 
+                                                   FontSize="16" 
+                                                   FontWeight="Medium"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                    </StackPanel>
+
+                                    <!-- Телефон -->
+                                    <StackPanel Margin="0,15,0,5">
+                                        <TextBlock Text="Телефон:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <TextBlock x:Name="PhoneValueText" 
+                                                   Text="+7 (123) 456-78-90" 
+                                                   FontSize="16" 
+                                                   FontWeight="Medium"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                    </StackPanel>
+
+                                    <!-- Email -->
+                                    <StackPanel Margin="0,15,0,5">
+                                        <TextBlock Text="Email:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <TextBlock x:Name="EmailValueText" 
+                                                   Text="example@mail.com" 
+                                                   FontSize="16" 
+                                                   FontWeight="Medium"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                    </StackPanel>
+
+                                    <!-- Логин -->
+                                    <StackPanel Margin="0,15,0,5">
+                                        <TextBlock Text="Логин:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <TextBlock x:Name="LoginValueText" 
+                                                   Text="user123" 
+                                                   FontSize="16" 
+                                                   FontWeight="Medium"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                    </StackPanel>
+
+                                    <!-- Статистика -->
+                                    <TextBlock Text="Статистика" 
+                                               FontSize="18" 
+                                               FontWeight="SemiBold"
+                                               Margin="0,30,0,20"
+                                               Foreground="{StaticResource TextBrush}"/>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Карточка с количеством записей -->
+                                        <Border Grid.Column="0" 
+                                                Background="{StaticResource PrimaryLightBrush}"
+                                                CornerRadius="10"
+                                                Margin="0,0,10,0"
+                                                Padding="15">
+                                            <StackPanel>
+                                                <TextBlock Text="Записей на прием" 
+                                                           FontSize="14"
+                                                           Foreground="{StaticResource TextBrush}"/>
+                                                <TextBlock x:Name="AppointmentsCountText" 
+                                                           Text="5" 
+                                                           FontSize="36"
+                                                           FontWeight="Bold"
+                                                           Margin="0,10,0,0"
+                                                           Foreground="{StaticResource PrimaryBrush}"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- Карточка с количеством медкарт -->
+                                        <Border Grid.Column="1" 
+                                                Background="{StaticResource AccentLightBrush}"
+                                                CornerRadius="10"
+                                                Margin="10,0,0,0"
+                                                Padding="15">
+                                            <StackPanel>
+                                                <TextBlock Text="Медицинских карт" 
+                                                           FontSize="14"
+                                                           Foreground="{StaticResource TextBrush}"/>
+                                                <TextBlock x:Name="MedcardsCountText" 
+                                                           Text="3" 
+                                                           FontSize="36"
+                                                           FontWeight="Bold"
+                                                           Margin="0,10,0,0"
+                                                           Foreground="{StaticResource AccentBrush}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Режим редактирования -->
+                            <Grid x:Name="EditModePanel" Visibility="Collapsed">
+                                <StackPanel>
+                                    <TextBlock Text="Редактирование профиля" 
+                                               FontSize="18" 
+                                               FontWeight="SemiBold"
+                                               Margin="0,0,0,20"
+                                               Foreground="{StaticResource TextBrush}"/>
+
+                                    <!-- ФИО -->
+                                    <StackPanel Margin="0,5,0,15">
+                                        <TextBlock Text="ФИО:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <TextBox x:Name="NameEditBox" 
+                                                 Style="{StaticResource ModernTextBox}"/>
+                                    </StackPanel>
+
+                                    <!-- Телефон -->
+                                    <StackPanel Margin="0,5,0,15">
+                                        <TextBlock Text="Телефон:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <TextBox x:Name="PhoneEditBox" 
+                                                 Style="{StaticResource ModernTextBox}"/>
+                                    </StackPanel>
+
+                                    <!-- Email -->
+                                    <StackPanel Margin="0,5,0,15">
+                                        <TextBlock Text="Email:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <TextBox x:Name="EmailEditBox" 
+                                                 Style="{StaticResource ModernTextBox}"/>
+                                    </StackPanel>
+
+                                    <!-- Кнопки сохранения/отмены -->
+                                    <StackPanel Orientation="Horizontal" 
+                                                HorizontalAlignment="Right"
+                                                Margin="0,20,0,0">
+                                        <Button x:Name="CancelButton" 
+                                                Content="Отмена" 
+                                                Style="{StaticResource OutlineButton}"
+                                                Click="CancelEdit_Click"
+                                                Width="120"
+                                                Height="40"
+                                                Margin="0,0,10,0"/>
+
+                                        <Button x:Name="SaveButton" 
+                                                Content="Сохранить" 
+                                                Style="{StaticResource ModernButton}"
+                                                Click="SaveProfile_Click"
+                                                Width="120"
+                                                Height="40"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Панель смены пароля -->
+                            <Grid x:Name="PasswordChangePanel" Visibility="Collapsed">
+                                <StackPanel>
+                                    <TextBlock Text="Изменение пароля" 
+                                               FontSize="18" 
+                                               FontWeight="SemiBold"
+                                               Margin="0,0,0,20"
+                                               Foreground="{StaticResource TextBrush}"/>
+
+                                    <!-- Текущий пароль -->
+                                    <StackPanel Margin="0,5,0,15">
+                                        <TextBlock Text="Текущий пароль:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <PasswordBox x:Name="CurrentPasswordBox" 
+                                                     Style="{StaticResource ModernPasswordBox}"/>
+                                    </StackPanel>
+
+                                    <!-- Новый пароль -->
+                                    <StackPanel Margin="0,5,0,15">
+                                        <TextBlock Text="Новый пароль:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <PasswordBox x:Name="NewPasswordBox" 
+                                                     Style="{StaticResource ModernPasswordBox}"/>
+                                    </StackPanel>
+
+                                    <!-- Подтверждение пароля -->
+                                    <StackPanel Margin="0,5,0,15">
+                                        <TextBlock Text="Подтверждение пароля:" 
+                                                   FontSize="14" 
+                                                   Opacity="0.7" 
+                                                   Margin="0,0,0,5"
+                                                   Foreground="{StaticResource TextBrush}"/>
+                                        <PasswordBox x:Name="ConfirmPasswordBox" 
+                                                     Style="{StaticResource ModernPasswordBox}"/>
+                                    </StackPanel>
+
+                                    <!-- Кнопки сохранения/отмены -->
+                                    <StackPanel Orientation="Horizontal" 
+                                                HorizontalAlignment="Right"
+                                                Margin="0,20,0,0">
+                                        <Button x:Name="CancelPasswordButton" 
+                                                Content="Отмена" 
+                                                Style="{StaticResource OutlineButton}"
+                                                Click="CancelPasswordChange_Click"
+                                                Width="120"
+                                                Height="40"
+                                                Margin="0,0,10,0"/>
+
+                                        <Button x:Name="SavePasswordButton" 
+                                                Content="Сохранить" 
+                                                Style="{StaticResource ModernButton}"
+                                                Click="SavePassword_Click"
+                                                Width="120"
+                                                Height="40"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl> 

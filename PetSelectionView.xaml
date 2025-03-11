@@ -1,0 +1,299 @@
+<UserControl x:Class="Veterinary_Clinic.PetSelectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Veterinary_Clinic"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900">
+    
+    <UserControl.Resources>
+        <!-- Стиль для карточки питомца -->
+        <Style x:Key="PetCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,0,15,15"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Height" Value="270"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="270" Color="#20000000" Opacity="0.2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Стиль для круглой иконки животного -->
+        <Style x:Key="PetIconStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="CornerRadius" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,20,0,15"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Заголовок -->
+        <Border Grid.Row="0" 
+                Background="{StaticResource PrimaryBrush}" 
+                CornerRadius="10"
+                Margin="0,0,0,20">
+            <StackPanel Margin="20,15">
+                <TextBlock Text="Выбор питомца" 
+                           FontSize="26" 
+                           FontWeight="Bold" 
+                           Foreground="White"/>
+                <TextBlock Text="Выберите питомца для записи или добавьте нового" 
+                           FontSize="16" 
+                           Foreground="White" 
+                           Opacity="0.9"
+                           Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Основное содержимое -->
+        <Grid Grid.Row="1">
+            <!-- Секция выбора животного -->
+            <Grid x:Name="PetSelectionGrid" Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Row="0" 
+                        x:Name="AddNewPetButton"
+                        Content="+ Добавить нового питомца" 
+                        Height="40" 
+                        Padding="20,0"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,0,20"
+                        Style="{StaticResource ModernButtonStyle}"
+                        Click="AddNewPetButton_Click"/>
+                
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <WrapPanel x:Name="PetsWrapPanel" 
+                              HorizontalAlignment="Left" 
+                              VerticalAlignment="Top" 
+                              Margin="0,0,0,0"/>
+                </ScrollViewer>
+                
+                <TextBlock x:Name="NoPetsText" 
+                          Text="У вас пока нет добавленных питомцев. Добавьте нового питомца для продолжения." 
+                          FontSize="16" 
+                          Foreground="{StaticResource TextBrush}" 
+                          TextWrapping="Wrap" 
+                          TextAlignment="Center" 
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center" 
+                          Visibility="Collapsed" 
+                          Margin="0,100,0,0" 
+                          MaxWidth="500"/>
+            </Grid>
+            
+            <!-- Секция добавления нового животного -->
+            <Grid x:Name="AddPetGrid" Visibility="Collapsed">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Border Background="White" 
+                           CornerRadius="10" 
+                           Padding="25" 
+                           Margin="0,0,15,0">
+                        <StackPanel>
+                            <TextBlock Text="Информация о питомце" 
+                                      FontSize="18" 
+                                      FontWeight="SemiBold" 
+                                      Foreground="{StaticResource TextBrush}" 
+                                      Margin="0,0,0,20"/>
+                            
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Кличка *" 
+                                              FontSize="14" 
+                                              Foreground="{StaticResource TextBrush}" 
+                                              Opacity="0.7" 
+                                              Margin="0,0,0,5"/>
+                                              
+                                    <TextBox x:Name="PetNameTextBox" 
+                                            Padding="10" 
+                                            FontSize="14" 
+                                            Height="40"
+                                            BorderThickness="1" 
+                                            BorderBrush="{StaticResource LightBorderBrush}"/>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="Тип животного *" 
+                                              FontSize="14" 
+                                              Foreground="{StaticResource TextBrush}" 
+                                              Opacity="0.7" 
+                                              Margin="0,0,0,5"/>
+                                              
+                                    <ComboBox x:Name="AnimalTypeComboBox" 
+                                             Padding="10" 
+                                             FontSize="14" 
+                                             Height="40"
+                                             BorderThickness="1" 
+                                             BorderBrush="{StaticResource LightBorderBrush}"/>
+                                </StackPanel>
+                            </Grid>
+                            
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Порода" 
+                                              FontSize="14" 
+                                              Foreground="{StaticResource TextBrush}" 
+                                              Opacity="0.7" 
+                                              Margin="0,0,0,5"/>
+                                              
+                                    <TextBox x:Name="BreedTextBox" 
+                                            Padding="10" 
+                                            FontSize="14" 
+                                            Height="40"
+                                            BorderThickness="1" 
+                                            BorderBrush="{StaticResource LightBorderBrush}"/>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="Пол *" 
+                                              FontSize="14" 
+                                              Foreground="{StaticResource TextBrush}" 
+                                              Opacity="0.7" 
+                                              Margin="0,0,0,5"/>
+                                              
+                                    <ComboBox x:Name="GenderComboBox" 
+                                             Padding="10" 
+                                             FontSize="14" 
+                                             Height="40"
+                                             BorderThickness="1" 
+                                             BorderBrush="{StaticResource LightBorderBrush}">
+                                        <ComboBoxItem Content="Мужской"/>
+                                        <ComboBoxItem Content="Женский"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                            
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Дата рождения" 
+                                              FontSize="14" 
+                                              Foreground="{StaticResource TextBrush}" 
+                                              Opacity="0.7" 
+                                              Margin="0,0,0,5"/>
+                                              
+                                    <DatePicker x:Name="BirthDatePicker" 
+                                              Padding="10,0" 
+                                              FontSize="14" 
+                                              Height="40"
+                                              BorderThickness="1" 
+                                              BorderBrush="{StaticResource LightBorderBrush}"/>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="Окрас" 
+                                              FontSize="14" 
+                                              Foreground="{StaticResource TextBrush}" 
+                                              Opacity="0.7" 
+                                              Margin="0,0,0,5"/>
+                                              
+                                    <TextBox x:Name="ColorTextBox" 
+                                            Padding="10" 
+                                            FontSize="14" 
+                                            Height="40"
+                                            BorderThickness="1" 
+                                            BorderBrush="{StaticResource LightBorderBrush}"/>
+                                </StackPanel>
+                            </Grid>
+                            
+                            <StackPanel Margin="0,0,0,20">
+                                <TextBlock Text="Особые отметки" 
+                                          FontSize="14" 
+                                          Foreground="{StaticResource TextBrush}" 
+                                          Opacity="0.7" 
+                                          Margin="0,0,0,5"/>
+                                          
+                                <TextBox x:Name="NotesTextBox" 
+                                        Height="80" 
+                                        TextWrapping="Wrap" 
+                                        VerticalScrollBarVisibility="Auto"
+                                        Padding="10"
+                                        BorderThickness="1"
+                                        BorderBrush="{StaticResource LightBorderBrush}"/>
+                            </StackPanel>
+                            
+                            <TextBlock Text="* Обязательные поля" 
+                                      FontSize="14" 
+                                      Foreground="{StaticResource TextBrush}" 
+                                      Opacity="0.7"
+                                      Margin="0,0,0,15"/>
+                            
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button x:Name="CancelAddPetButton"
+                                       Content="Отмена" 
+                                       Width="120" 
+                                       Height="40" 
+                                       Margin="0,0,15,0"
+                                       Click="CancelAddPetButton_Click"/>
+                                       
+                                <Button x:Name="SavePetButton"
+                                       Content="Сохранить" 
+                                       Width="120" 
+                                       Height="40"
+                                       Style="{StaticResource ModernButtonStyle}"
+                                       Click="SavePetButton_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+        
+        <!-- Кнопки навигации -->
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" 
+                    x:Name="BackButton"
+                    Content="Назад к выбору времени" 
+                    Height="40" 
+                    Padding="20,0"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Click="BackButton_Click"/>
+                    
+            <Button Grid.Column="2" 
+                    x:Name="ContinueButton"
+                    Content="Продолжить" 
+                    Height="40" 
+                    Padding="20,0"
+                    Style="{StaticResource ModernButtonStyle}"
+                    Click="ContinueButton_Click"
+                    IsEnabled="False"/>
+        </Grid>
+    </Grid>
+</UserControl> 

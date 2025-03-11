@@ -1,0 +1,150 @@
+<UserControl x:Class="Veterinary_Clinic.AppointmentsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Veterinary_Clinic"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="900">
+    
+    <UserControl.Resources>
+        <!-- Стиль для карточки записи -->
+        <Style x:Key="AppointmentCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="8" ShadowDepth="1" Direction="270" Color="#20000000" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Стиль для статуса записи -->
+        <Style x:Key="AppointmentStatusStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        
+        <!-- Стиль для кнопки отмены записи -->
+        <Style x:Key="CancelAppointmentButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#E74C3C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,7"/>
+            <Setter Property="Margin" Value="0,10,0,0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        
+        <!-- Стиль для фильтра -->
+        <Style x:Key="FilterSegmentStyle" TargetType="Border">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
+        <!-- Стиль для строки состояния -->
+        <Style x:Key="StatusIndicatorStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Padding" Value="6,2"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Заголовок -->
+        <Border Grid.Row="0" 
+                Background="{StaticResource PrimaryBrush}" 
+                CornerRadius="10"
+                Margin="0,0,0,20">
+            <StackPanel Margin="20,15">
+                <TextBlock Text="Мои записи на приём" 
+                          FontSize="26" 
+                          FontWeight="Bold" 
+                          Foreground="White"/>
+                <TextBlock Text="Здесь вы можете увидеть все свои прошлые и предстоящие приёмы" 
+                          FontSize="16" 
+                          Foreground="White" 
+                          Opacity="0.9"
+                          Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Фильтры и сортировка -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Сегменты для фильтрации -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Border x:Name="AllAppointmentsSegment" 
+                        Background="{StaticResource PrimaryBrush}" 
+                        BorderThickness="0" 
+                        CornerRadius="20,0,0,20" 
+                        Padding="15,10" 
+                        Cursor="Hand" 
+                        MouseLeftButtonDown="AllAppointmentsSegment_MouseLeftButtonDown">
+                    <TextBlock Text="Все записи" 
+                               Foreground="White" 
+                               FontWeight="SemiBold"/>
+                </Border>
+                
+                <Border x:Name="UpcomingAppointmentsSegment" 
+                        Background="{StaticResource SurfaceBrush}" 
+                        BorderThickness="0" 
+                        Padding="15,10" 
+                        Cursor="Hand" 
+                        MouseLeftButtonDown="UpcomingAppointmentsSegment_MouseLeftButtonDown">
+                    <TextBlock Text="Предстоящие" 
+                               Foreground="{StaticResource TextBrush}"/>
+                </Border>
+                
+                <Border x:Name="PastAppointmentsSegment" 
+                        Background="{StaticResource SurfaceBrush}" 
+                        BorderThickness="0" 
+                        CornerRadius="0,20,20,0" 
+                        Padding="15,10" 
+                        Cursor="Hand" 
+                        MouseLeftButtonDown="PastAppointmentsSegment_MouseLeftButtonDown">
+                    <TextBlock Text="Прошедшие" 
+                               Foreground="{StaticResource TextBrush}"/>
+                </Border>
+            </StackPanel>
+            
+            <!-- Кнопка новой записи -->
+            <Button Grid.Column="2" 
+                    Content="Новая запись" 
+                    Style="{StaticResource ModernButton}" 
+                    Click="NewAppointmentButton_Click"/>
+        </Grid>
+        
+        <!-- Список записей -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="AppointmentsPanel">
+                <!-- Заглушка при отсутствии записей -->
+                <TextBlock x:Name="NoAppointmentsText" 
+                          Text="У вас пока нет записей на приём. Запишитесь на приём прямо сейчас!" 
+                          FontSize="16" 
+                          Foreground="{StaticResource TextBrush}" 
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center"
+                          TextAlignment="Center"
+                          Margin="0,100,0,0"
+                          Visibility="Collapsed"/>
+                
+                <!-- Содержимое заполняется динамически -->
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl> 

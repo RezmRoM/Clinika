@@ -1,0 +1,434 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\employeewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:employeewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\employeewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:employeewindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|c:\\users\\roma_w\\desktop\\111\\testing\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\authorizationwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:authorizationwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|c:\\users\\roma_w\\desktop\\111\\testing\\appointmentsview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:appointmentsview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\appointmentsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:appointmentsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\appointmentconfirmationview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:appointmentconfirmationview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\clientwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:clientwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\servicesview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:servicesview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:models.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\clientwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:clientwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\profileview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:profileview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\profileview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:profileview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\medicalcardformview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:medicalcardformview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\petselectionview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:petselectionview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\medicalcardsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:medicalcardsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\helpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:helpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\appointmentconfirmationview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:appointmentconfirmationview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\medicalcardformview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:medicalcardformview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\medicalcardsview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:medicalcardsview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\datetimeselectionview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:datetimeselectionview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\veterinarianselectionview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:veterinarianselectionview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\authorizationwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:authorizationwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\registrationwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E62B9AC4-C398-41A5-A3E7-27BAC363B16C}|Veterinary_Clinic.csproj|solutionrelative:registrationwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\App.config",
+              "RelativeDocumentMoniker": "App.config",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\App.config",
+              "RelativeToolTip": "App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-11T14:24:37.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppointmentsView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AppointmentsView.xaml.cs",
+              "RelativeDocumentMoniker": "AppointmentsView.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AppointmentsView.xaml.cs",
+              "RelativeToolTip": "AppointmentsView.xaml.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAEwEsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T21:16:48.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppointmentsView.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AppointmentsView.xaml",
+              "RelativeDocumentMoniker": "AppointmentsView.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AppointmentsView.xaml",
+              "RelativeToolTip": "AppointmentsView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-10T21:16:52.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeeWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\EmployeeWindow.xaml",
+              "RelativeDocumentMoniker": "EmployeeWindow.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\EmployeeWindow.xaml*",
+              "RelativeToolTip": "EmployeeWindow.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-10T12:42:44.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\EmployeeWindow.xaml.cs",
+              "RelativeDocumentMoniker": "EmployeeWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\EmployeeWindow.xaml.cs*",
+              "RelativeToolTip": "EmployeeWindow.xaml.cs*",
+              "ViewState": "AgIAAO8CAAAAAAAAAAAkwBADAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T21:18:02.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthorizationWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AuthorizationWindow.xaml.cs",
+              "RelativeDocumentMoniker": "AuthorizationWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AuthorizationWindow.xaml.cs",
+              "RelativeToolTip": "AuthorizationWindow.xaml.cs",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAqwNoAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T12:46:09.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ClientWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ClientWindow.xaml",
+              "RelativeDocumentMoniker": "ClientWindow.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ClientWindow.xaml",
+              "RelativeToolTip": "ClientWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-10T12:42:12.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Models.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\Models.cs",
+              "RelativeDocumentMoniker": "Models.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\Models.cs",
+              "RelativeToolTip": "Models.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T12:34:48.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ServicesView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ServicesView.xaml.cs",
+              "RelativeDocumentMoniker": "ServicesView.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ServicesView.xaml.cs",
+              "RelativeToolTip": "ServicesView.xaml.cs",
+              "ViewState": "AgIAAEcBAAAAAAAAAAAcwGcBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T21:13:54.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ClientWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ClientWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ClientWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ClientWindow.xaml.cs",
+              "RelativeToolTip": "ClientWindow.xaml.cs",
+              "ViewState": "AgIAAPcCAAAAAAAAAAAAwAQDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T21:11:44.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppointmentConfirmationView.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AppointmentConfirmationView.xaml",
+              "RelativeDocumentMoniker": "AppointmentConfirmationView.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AppointmentConfirmationView.xaml",
+              "RelativeToolTip": "AppointmentConfirmationView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-11T12:59:14.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "MedicalCardsView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\MedicalCardsView.xaml.cs",
+              "RelativeDocumentMoniker": "MedicalCardsView.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\MedicalCardsView.xaml.cs",
+              "RelativeToolTip": "MedicalCardsView.xaml.cs",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAAAMwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T21:14:00.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ProfileView.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ProfileView.xaml",
+              "RelativeDocumentMoniker": "ProfileView.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ProfileView.xaml",
+              "RelativeToolTip": "ProfileView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-11T12:27:31.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProfileView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ProfileView.xaml.cs",
+              "RelativeDocumentMoniker": "ProfileView.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\ProfileView.xaml.cs",
+              "RelativeToolTip": "ProfileView.xaml.cs",
+              "ViewState": "AgIAAFcBAAAAAAAAAAAAwHkBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T12:27:56.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AppointmentConfirmationView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AppointmentConfirmationView.xaml.cs",
+              "RelativeDocumentMoniker": "AppointmentConfirmationView.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AppointmentConfirmationView.xaml.cs",
+              "RelativeToolTip": "AppointmentConfirmationView.xaml.cs",
+              "ViewState": "AgIAAAgBAAAAAAAAAAAUwB8BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T21:16:45.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "MedicalCardFormView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\MedicalCardFormView.xaml.cs",
+              "RelativeDocumentMoniker": "MedicalCardFormView.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\MedicalCardFormView.xaml.cs",
+              "RelativeToolTip": "MedicalCardFormView.xaml.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAIwFEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T21:18:12.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-10T12:42:54.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MedicalCardFormView.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\MedicalCardFormView.xaml",
+              "RelativeDocumentMoniker": "MedicalCardFormView.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\MedicalCardFormView.xaml",
+              "RelativeToolTip": "MedicalCardFormView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-11T12:25:00.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PetSelectionView.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\PetSelectionView.xaml",
+              "RelativeDocumentMoniker": "PetSelectionView.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\PetSelectionView.xaml",
+              "RelativeToolTip": "PetSelectionView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-11T12:25:11.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MedicalCardsView.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\MedicalCardsView.xaml",
+              "RelativeDocumentMoniker": "MedicalCardsView.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\MedicalCardsView.xaml",
+              "RelativeToolTip": "MedicalCardsView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-11T12:25:07.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Helpers.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\Helpers.cs",
+              "RelativeDocumentMoniker": "Helpers.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\Helpers.cs",
+              "RelativeToolTip": "Helpers.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-11T12:25:03.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "DateTimeSelectionView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\DateTimeSelectionView.xaml.cs",
+              "RelativeDocumentMoniker": "DateTimeSelectionView.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\DateTimeSelectionView.xaml.cs",
+              "RelativeToolTip": "DateTimeSelectionView.xaml.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAmwEkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T21:17:51.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "VeterinarianSelectionView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\VeterinarianSelectionView.xaml.cs",
+              "RelativeDocumentMoniker": "VeterinarianSelectionView.xaml.cs",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\VeterinarianSelectionView.xaml.cs",
+              "RelativeToolTip": "VeterinarianSelectionView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T21:13:48.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "RegistrationWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\RegistrationWindow.xaml",
+              "RelativeDocumentMoniker": "RegistrationWindow.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\RegistrationWindow.xaml",
+              "RelativeToolTip": "RegistrationWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-10T12:40:52.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "AuthorizationWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AuthorizationWindow.xaml",
+              "RelativeDocumentMoniker": "AuthorizationWindow.xaml",
+              "ToolTip": "C:\\Users\\ROMA_W\\Desktop\\111\\Testing\\AuthorizationWindow.xaml",
+              "RelativeToolTip": "AuthorizationWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-10T12:39:27.029Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,731 @@
+﻿<Window x:Class="Veterinary_Clinic.EmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Veterinary_Clinic"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Ветеринарная клиника - Рабочее место сотрудника" 
+        Height="750" 
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="CanResizeWithGrip">
+
+    <Window.Resources>
+        <!-- Цвета -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#2196F3"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#1976D2"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="#F5F5F5"/>
+        <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TextBrush" Color="#212121"/>
+        <SolidColorBrush x:Key="SecondaryTextBrush" Color="#757575"/>
+        <SolidColorBrush x:Key="LightGrayBrush" Color="#EEEEEE"/>
+        <SolidColorBrush x:Key="DangerBrush" Color="#F44336"/>
+        <SolidColorBrush x:Key="SuccessBrush" Color="#4CAF50"/>
+
+        <!-- Иконки -->
+        <sys:String x:Key="CalendarIcon">📅</sys:String>
+        <sys:String x:Key="ProfileIcon">👤</sys:String>
+        <sys:String x:Key="ServicesIcon">💊</sys:String>
+        <sys:String x:Key="PatientsIcon">🐾</sys:String>
+        <sys:String x:Key="StatisticsIcon">📊</sys:String>
+        <sys:String x:Key="LogoutIcon">🚪</sys:String>
+
+        <!-- Стили для кнопок -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="5" ShadowDepth="1" Opacity="0.3"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль для кнопок управления окном -->
+        <Style x:Key="WindowControlButton" TargetType="Button">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#20000000"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль для меню -->
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                                Background="{TemplateBinding Background}"
+                                Padding="15,0"
+                                CornerRadius="4">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="24"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{TemplateBinding Tag}" 
+                                         FontSize="16" 
+                                         VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" 
+                                         Text="{TemplateBinding Content}" 
+                                         Margin="12,0,0,0"
+                                         VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#10000000"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для карточек -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource LightGrayBrush}"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для поля поиска -->
+        <Style x:Key="SearchBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource LightGrayBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <Grid>
+                                <TextBlock x:Name="PlaceholderText"
+                                         Text="🔍 Поиск..."
+                                         Margin="10,0,0,0"
+                                         VerticalAlignment="Center"
+                                         Foreground="{StaticResource SecondaryTextBrush}"/>
+                                <ScrollViewer x:Name="PART_ContentHost" 
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                    <Condition Property="IsFocused" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Collapsed"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для меток в профиле -->
+        <Style x:Key="ProfileLabelStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,0,10,10"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        </Style>
+
+        <!-- Стиль для текстовых полей в профиле -->
+        <Style x:Key="ProfileTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource LightGrayBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                        Margin="{TemplateBinding Padding}"
+                                        VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для DatePicker в профиле -->
+        <Style x:Key="ProfileDatePickerStyle" TargetType="DatePicker">
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource LightGrayBrush}"/>
+            <Setter Property="CalendarStyle">
+                <Setter.Value>
+                    <Style TargetType="Calendar">
+                        <Setter Property="Background" Value="White"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border Background="{StaticResource BackgroundBrush}" 
+            CornerRadius="20" 
+            BorderThickness="1" 
+            BorderBrush="{StaticResource PrimaryBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Верхняя панель -->
+            <Grid Grid.Row="0" Background="Transparent" MouseLeftButtonDown="DragWindow">
+                <TextBlock Text="Ветеринарная клиника - Рабочее место сотрудника"
+                           Foreground="{StaticResource TextBrush}"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right" 
+                            Margin="0,0,5,0">
+                    <Button x:Name="MinimizeButton" 
+                            Content="—"
+                            Click="MinimizeWindow"
+                            Style="{StaticResource WindowControlButton}"/>
+                    <Button x:Name="MaximizeButton" 
+                            Content="□"
+                            Click="MaximizeWindow"
+                            Style="{StaticResource WindowControlButton}"
+                            Margin="5,0"/>
+                    <Button x:Name="CloseButton" 
+                            Content="✕"
+                            Click="CloseWindow"
+                            Style="{StaticResource WindowControlButton}"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Основной контент -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Левая панель -->
+                <Border Grid.Column="0" 
+                        Background="{StaticResource SurfaceBrush}" 
+                        CornerRadius="0,0,0,20"
+                        BorderThickness="0,1,1,0"
+                        BorderBrush="{StaticResource LightGrayBrush}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Профиль -->
+                        <StackPanel Grid.Row="0" Margin="20,20,20,30">
+                            <Border Width="100" 
+                                    Height="100" 
+                                    CornerRadius="50" 
+                                    Background="{StaticResource SurfaceBrush}"
+                                    BorderBrush="{StaticResource PrimaryBrush}"
+                                    BorderThickness="2"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,0,10">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" 
+                                                    ShadowDepth="1" 
+                                                    Opacity="0.2"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Ellipse x:Name="DefaultAvatar" 
+                                            Fill="{StaticResource LightGrayBrush}"/>
+                                    <Image x:Name="ProfileImage" 
+                                           Stretch="UniformToFill"/>
+                                </Grid>
+                            </Border>
+                            <TextBlock x:Name="EmployeeName" 
+                                       Text="Имя Сотрудника" 
+                                       HorizontalAlignment="Center"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource TextBrush}"/>
+                            <TextBlock x:Name="EmployeePosition" 
+                                       Text="Должность" 
+                                       HorizontalAlignment="Center"
+                                       Foreground="{StaticResource SecondaryTextBrush}"/>
+                        </StackPanel>
+
+                        <!-- Меню -->
+                        <StackPanel Grid.Row="1" Margin="10,0">
+                            <Button x:Name="ScheduleButton" 
+                                    Content="Расписание" 
+                                    Style="{StaticResource MenuButtonStyle}"
+                                    Tag="{StaticResource CalendarIcon}"
+                                    Click="ScheduleButton_Click"/>
+
+                            <Button x:Name="ProfileButton" 
+                                    Content="Профиль" 
+                                    Style="{StaticResource MenuButtonStyle}"
+                                    Tag="{StaticResource ProfileIcon}"
+                                    Click="ProfileButton_Click"/>
+
+                            <Button x:Name="ServicesButton" 
+                                    Content="Услуги" 
+                                    Style="{StaticResource MenuButtonStyle}"
+                                    Tag="{StaticResource ServicesIcon}"
+                                    Click="ServicesButton_Click"/>
+
+                            <Button x:Name="PatientsButton" 
+                                    Content="Пациенты" 
+                                    Style="{StaticResource MenuButtonStyle}"
+                                    Tag="{StaticResource PatientsIcon}"
+                                    Click="PatientsButton_Click"/>
+
+                            <Button x:Name="StatisticsButton" 
+                                    Content="Статистика" 
+                                    Style="{StaticResource MenuButtonStyle}"
+                                    Tag="{StaticResource StatisticsIcon}"
+                                    Click="StatisticsButton_Click"/>
+                        </StackPanel>
+
+                        <!-- Кнопка выхода -->
+                        <Button Grid.Row="2" 
+                                Content="Выйти" 
+                                Style="{StaticResource MenuButtonStyle}"
+                                Tag="{StaticResource LogoutIcon}"
+                                Click="LogoutButton_Click"
+                                Margin="10,20"/>
+                    </Grid>
+                </Border>
+
+                <!-- Основная область контента -->
+                <Border Grid.Column="1" 
+                        Background="{StaticResource SurfaceBrush}"
+                        Margin="20" 
+                        CornerRadius="10">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" 
+                                        ShadowDepth="1" 
+                                        Opacity="0.1"/>
+                    </Border.Effect>
+
+                    <!-- Контейнер для страниц -->
+                    <Grid>
+                        <!-- Страница расписания -->
+                        <Grid x:Name="SchedulePage" Visibility="Visible">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Панель инструментов -->
+                            <Grid Grid.Row="0" Margin="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Style="{StaticResource SearchBoxStyle}"
+                                         x:Name="SearchBox"/>
+
+                                <StackPanel Grid.Column="1" 
+                                          Orientation="Horizontal"
+                                          Margin="16,0,0,0">
+                                    <Button Content="Фильтр" 
+                                            Style="{StaticResource ModernButton}"
+                                            Click="FilterButton_Click"
+                                            Margin="0,0,8,0"/>
+                                    <Button Content="Обновить"
+                                            Style="{StaticResource ModernButton}"
+                                            Click="RefreshButton_Click"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Список приемов -->
+                            <ScrollViewer Grid.Row="1" 
+                                        Margin="20,0,20,20"
+                                        VerticalScrollBarVisibility="Auto" 
+                                        HorizontalScrollBarVisibility="Disabled">
+                                <StackPanel>
+                                    <TextBlock x:Name="AppointmentsHeader"
+                                             Text="Расписание приёмов"
+                                             FontSize="24"
+                                             FontWeight="Bold"
+                                             Margin="0,0,0,16"/>
+                                    <ItemsControl x:Name="AppointmentsControl">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource CardStyle}"
+                                                        Margin="0,0,0,16">
+                                                    <StackPanel Margin="16">
+                                                        <TextBlock Text="{Binding FormattedDate}" 
+                                                                 FontSize="18"
+                                                                 FontWeight="SemiBold"
+                                                                 Foreground="{StaticResource TextBrush}"/>
+                                                        <ItemsControl ItemsSource="{Binding Appointments}">
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Border Style="{StaticResource CardStyle}"
+                                                                            Margin="0,8"
+                                                                            Background="#FAFAFA">
+                                                                        <Grid Margin="16">
+                                                                            <Grid.ColumnDefinitions>
+                                                                                <ColumnDefinition Width="Auto"/>
+                                                                                <ColumnDefinition Width="*"/>
+                                                                                <ColumnDefinition Width="Auto"/>
+                                                                            </Grid.ColumnDefinitions>
+
+                                                                            <TextBlock Grid.Column="0" 
+                                                                                     Text="{Binding Time}"
+                                                                                     FontSize="14"
+                                                                                     Foreground="{StaticResource TextBrush}"
+                                                                                     VerticalAlignment="Center"/>
+
+                                                                            <StackPanel Grid.Column="1" 
+                                                                                      Margin="16,0">
+                                                                                <TextBlock Text="{Binding ClientName}"
+                                                                                         FontSize="16"
+                                                                                         FontWeight="SemiBold"
+                                                                                         Foreground="{StaticResource TextBrush}"/>
+                                                                                <TextBlock Text="{Binding Service}"
+                                                                                         FontSize="14"
+                                                                                         Foreground="{StaticResource SecondaryTextBrush}"/>
+                                                                                <TextBlock Text="{Binding PetName}"
+                                                                                         FontSize="14"
+                                                                                         Foreground="{StaticResource SecondaryTextBrush}"/>
+                                                                            </StackPanel>
+
+                                                                            <StackPanel Grid.Column="2" 
+                                                                                      Orientation="Horizontal">
+                                                                                <Button Content="Подробнее"
+                                                                                        Style="{StaticResource ModernButton}"
+                                                                                        Click="AppointmentDetails_Click"
+                                                                                        Margin="0,0,8,0"/>
+                                                                                <Button Content="Отменить"
+                                                                                        Style="{StaticResource ModernButton}"
+                                                                                        Background="{StaticResource DangerBrush}"
+                                                                                        Click="CancelAppointment_Click"/>
+                                                                            </StackPanel>
+                                                                        </Grid>
+                                                                    </Border>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+
+                        <!-- Страница профиля -->
+                        <Grid x:Name="ProfilePage" Visibility="Collapsed">
+                            <Border Style="{StaticResource CardStyle}" Margin="20">
+                                <StackPanel Margin="20">
+                                    <TextBlock Text="Профиль сотрудника"
+                                             FontSize="24"
+                                             FontWeight="Bold"
+                                             Margin="0,0,0,20"/>
+
+                                    <Grid Margin="0,0,0,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="ФИО:"
+                                                 Grid.Row="0"
+                                                 Grid.Column="0"
+                                                 Style="{StaticResource ProfileLabelStyle}"/>
+                                        <TextBox x:Name="FullNameTextBox"
+                                                 Grid.Row="0"
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource ProfileTextBoxStyle}"/>
+
+                                        <TextBlock Text="Должность:"
+                                                 Grid.Row="1"
+                                                 Grid.Column="0"
+                                                 Style="{StaticResource ProfileLabelStyle}"/>
+                                        <TextBox x:Name="PositionTextBox"
+                                                 Grid.Row="1"
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource ProfileTextBoxStyle}"/>
+
+                                        <TextBlock Text="Специализация:"
+                                                 Grid.Row="2"
+                                                 Grid.Column="0"
+                                                 Style="{StaticResource ProfileLabelStyle}"/>
+                                        <TextBox x:Name="SpecializationTextBox"
+                                                 Grid.Row="2"
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource ProfileTextBoxStyle}"/>
+
+                                        <TextBlock Text="Email:"
+                                                 Grid.Row="3"
+                                                 Grid.Column="0"
+                                                 Style="{StaticResource ProfileLabelStyle}"/>
+                                        <TextBox x:Name="EmailTextBox"
+                                                 Grid.Row="3"
+                                                 Grid.Column="1"
+                                                 Style="{StaticResource ProfileTextBoxStyle}"/>
+
+                                        <TextBlock Text="Дата рождения:"
+                                                 Grid.Row="4"
+                                                 Grid.Column="0"
+                                                 Style="{StaticResource ProfileLabelStyle}"/>
+                                        <DatePicker x:Name="BirthDatePicker"
+                                                   Grid.Row="4"
+                                                   Grid.Column="1"
+                                                   Style="{StaticResource ProfileDatePickerStyle}"/>
+                                    </Grid>
+
+                                    <Button Content="Сохранить изменения"
+                                            Style="{StaticResource ModernButton}"
+                                            Click="SaveProfile_Click"
+                                            HorizontalAlignment="Right"
+                                            Margin="0,20,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <!-- Страница услуг -->
+                        <Grid x:Name="ServicesPage" Visibility="Collapsed">
+                            <Border Style="{StaticResource CardStyle}" Margin="20">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="Услуги клиники"
+                                             FontSize="24"
+                                             FontWeight="Bold"
+                                             Margin="20"/>
+
+                                    <ListView x:Name="ServicesListView" 
+                                            Grid.Row="1"
+                                            Margin="20">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource CardStyle}" Margin="0,5">
+                                                    <Grid Margin="10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Name}" 
+                                                                     FontSize="16" 
+                                                                     FontWeight="SemiBold"/>
+                                                            <TextBlock Text="{Binding Cost, StringFormat='{}{0:C}'}" 
+                                                                     Foreground="{StaticResource SecondaryTextBrush}"/>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <!-- Страница пациентов -->
+                        <Grid x:Name="PatientsPage" Visibility="Collapsed">
+                            <Border Style="{StaticResource CardStyle}" Margin="20">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="Мои пациенты"
+                                             FontSize="24"
+                                             FontWeight="Bold"
+                                             Margin="20"/>
+
+                                    <ListView x:Name="PatientsListView" 
+                                            Grid.Row="1"
+                                            Margin="20">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource CardStyle}" Margin="0,5">
+                                                    <Grid Margin="10">
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Name}" 
+                                                                     FontSize="16" 
+                                                                     FontWeight="SemiBold"/>
+                                                            <TextBlock>
+                                                                <Run Text="{Binding Type}"/>
+                                                                <Run Text=" - "/>
+                                                                <Run Text="{Binding Breed}"/>
+                                                            </TextBlock>
+                                                            <TextBlock Text="{Binding Owner}" 
+                                                                     Foreground="{StaticResource SecondaryTextBrush}"/>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <!-- Страница статистики -->
+                        <Grid x:Name="StatisticsPage" Visibility="Collapsed">
+                            <Border Style="{StaticResource CardStyle}" Margin="20">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="Статистика"
+                                             FontSize="24"
+                                             FontWeight="Bold"
+                                             Margin="20"/>
+
+                                    <ListView x:Name="MonthlyStatsListView" 
+                                            Grid.Row="1"
+                                            Margin="20">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource CardStyle}" Margin="0,5">
+                                                    <Grid Margin="10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Text="{Binding MonthYear}" 
+                                                                 FontSize="16"/>
+                                                        <TextBlock Grid.Column="1" 
+                                                                 Text="{Binding Count, StringFormat='Приемов: {0}'}"
+                                                                 Margin="20,0"/>
+                                                        <TextBlock Grid.Column="2" 
+                                                                 Text="{Binding Revenue, StringFormat='{}{0:C}'}"/>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+
+                                    <ListView x:Name="ServiceStatsListView" 
+                                            Grid.Row="2"
+                                            Margin="20">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource CardStyle}" Margin="0,5">
+                                                    <Grid Margin="10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Text="{Binding ServiceName}" 
+                                                                 FontSize="16"/>
+                                                        <TextBlock Grid.Column="1" 
+                                                                 Text="{Binding Count, StringFormat='Количество: {0}'}"
+                                                                 Margin="20,0"/>
+                                                        <TextBlock Grid.Column="2" 
+                                                                 Text="{Binding Revenue, StringFormat='{}{0:C}'}"/>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
