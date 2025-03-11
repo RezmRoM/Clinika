@@ -5,14 +5,20 @@ cd Computer_Handware_Store
 code .
 ```
 
-Роли (Клиент и Сотрудник)
+# Роли (Клиент и Сотрудник)
 
-Клиент
-email: ivanov@example.com
-логин: ivanov
-пароль: 123
+## Клиент
 
-Сотрудник
-логин: sokolov 
-email: sokolov@example.com
-пароль: 123
+* email: ivanov@example.com
+
+* логин: ivanov
+
+* пароль: 123
+
+## Сотрудник
+
+* логин: sokolov 
+
+* email: sokolov@example.com
+
+* пароль: 123
